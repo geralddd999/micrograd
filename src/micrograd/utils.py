@@ -1,4 +1,4 @@
-from engine.engine import Value
+from micrograd.value import Value
 from graphviz import Digraph
 
 def trace(root):
@@ -10,7 +10,7 @@ def trace(root):
       for child in v._prev:
         edges.add((child,v))
         build(child)
-    build(root)
+  build(root)
   return nodes, edges
 
 def draw_graph(root):
@@ -22,7 +22,7 @@ def draw_graph(root):
     uid = str(id(n))
 
     dot.node(name =uid, label = "{ %s | %.3f | grad %.4f}" % (n._label, n.data, n.grad), shape = 'record') # create a rectangular node for ti
-    if n.op: #create edges for the nodes and its results
+    if n._op: #create edges for the nodes and its results
       dot.node(name = uid + n._op , label = n._op)
       dot.edge(uid + n._op, uid)
   for n1, n2 in edges:

@@ -1,4 +1,4 @@
-from engine.engine import Value
+from src.micrograd.value import Value
 
 def test_add():
   a = Value(2.0)
